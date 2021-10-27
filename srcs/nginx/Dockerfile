@@ -17,8 +17,7 @@ LABEL   Author "asaadi <asaadi@student.1337.ma>"
     RUN     chown -R nginx:nginx /var/lib/nginx
     RUN     chown -R nginx:nginx /www
 
-# # Configuration
-#     # Configuration Nginx to listen to port 80 and process .html and .htm
+#  Configuration
     RUN     rm /etc/nginx/nginx.conf
     COPY    srcs/nginx.conf /etc/nginx/
     COPY    srcs/index.html /www/html/
@@ -31,17 +30,16 @@ LABEL   Author "asaadi <asaadi@student.1337.ma>"
             -out /etc/ssl/certs/nginx-selfsigned.crt 2> /dev/null || true
     
     # Telegraf
-    RUN     echo "http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
-    RUN     apk add telegraf
-    COPY    srcs/telegraf.conf /etc/
+    # RUN     echo "http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+    # RUN     apk add telegraf
+    # COPY    srcs/telegraf.conf /etc/
 
     # Script that will execute in container at runtime.
-    RUN     mkdir /run/nginx
+    #RUN     mkdir /run/nginx
 	COPY	srcs/*.sh /
 	RUN		chmod +x /*.sh
 
     # Specifying network ports at runtime
-    EXPOSE  80
     EXPOSE  443
 
     ENTRYPOINT [ "/run.sh" ]

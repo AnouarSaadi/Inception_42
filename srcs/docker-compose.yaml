@@ -1,0 +1,21 @@
+version: "1.25.0"
+	services: 
+		nginx:
+			build:
+				context: ./nginx/
+				dockerfile: Dockerfile
+			ports:
+				443:443
+			# restart:
+		wordpress:
+			build:
+				context: ./Wordpress+php-fpm/
+				dockerfile: Dockerfile
+			volumes:
+				/home/asaadi/data/wp-data:/www/wordpress
+		mariadb:
+			build:
+				context: ./MariaDB/
+				dockerfile: Dockerfile
+			voulumes:
+				/home/asaadi/data/db-data:/var/lib/mariadb/data

@@ -1,5 +1,5 @@
 # Base Image
-FROM    alpine:3.12
+FROM    alpine:3.14.2
 LABEL   Author "asaadi <asaadi@student.1337.ma>"
 
 #Installation
@@ -27,8 +27,9 @@ LABEL   Author "asaadi <asaadi@student.1337.ma>"
     
 
     # Script that will execute in container at runtime.
-	COPY	srcs/*.sh /
-	RUN		chmod +x /*.sh
+	# RUN		mkdir /run/nginx
+	COPY	srcs/run.sh /
+	RUN		chmod +x /run.sh
 
     # Specifying network ports at runtime
     EXPOSE  443

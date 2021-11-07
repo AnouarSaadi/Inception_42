@@ -1,4 +1,4 @@
-FROM    alpine:3.12
+FROM    alpine:3.14.2
 LABEL   Author "asaadi <asaadi@student.1337.ma>"
 
 RUN     apk update
@@ -11,7 +11,7 @@ RUN    	apk add php7 php7-fpm php7-common php7-iconv php7-json php7-gd php7-curl
 RUN     wget http://wordpress.org/latest.tar.gz; \
         tar -xzvf latest.tar.gz ; rm latest.tar.gz ; \
 		mv wordpress /www/
-RUN     rm /www/wordpress/wp-config-sample.php
+# RUN     rm /www/wordpress/wp-config-sample.php
 COPY    srcs/wp-config.php /www/wordpress/
 
 COPY    srcs/*.sh /

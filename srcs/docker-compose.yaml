@@ -1,21 +1,24 @@
-version: "1.25.0"
-	services: 
-		nginx:
-			build:
-				context: ./nginx/
-				dockerfile: Dockerfile
-			ports:
-				443:443
-			# restart:
-		wordpress:
-			build:
-				context: ./Wordpress+php-fpm/
-				dockerfile: Dockerfile
-			volumes:
-				/home/asaadi/data/wp-data:/www/wordpress
-		mariadb:
-			build:
-				context: ./MariaDB/
-				dockerfile: Dockerfile
-			voulumes:
-				/home/asaadi/data/db-data:/var/lib/mariadb/data
+version: "3.9"
+
+services:
+ nginx:
+  build: ./nginx/
+  ports:
+   - "443:443"
+  networks:
+   - app_default
+ wordpress:
+  build: ./WordPress+php-fpm/
+  networks:
+   - app_default
+  volumes:
+   - "/home/asaadi/data/wp-data:/www/wordpress"
+ mariadb:
+  build: ./MariaDB/
+  networks:
+   - app_default
+  volumes:
+   - "/home/asaadi/data/db-data:/var/lib/mysql"
+
+networks:
+ app_default:

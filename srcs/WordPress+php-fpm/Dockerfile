@@ -9,10 +9,10 @@ RUN    	apk add php7 php7-fpm php7-common php7-iconv php7-json php7-gd php7-curl
 		php7-dom php7-opcache php7-zlib php7-session php7-intl php7-zip
 
 RUN     wget http://wordpress.org/latest.tar.gz; \
-        tar -xzvf latest.tar.gz ; rm latest.tar.gz ; \
-		mv wordpress /www/
+        tar -xzvf latest.tar.gz ; rm latest.tar.gz
+		
 # RUN     rm /www/wordpress/wp-config-sample.php
-COPY    srcs/wp-config.php /www/wordpress/
+COPY    srcs/wp-config.php /wordpress/
 
 COPY    srcs/*.sh /
 RUN     chmod +x /*.sh

@@ -1,24 +1,34 @@
 version: "3.9"
 
 services:
- nginx:
-  build: ./nginx/
-  ports:
-   - "443:443"
-  networks:
-   - app_default
- wordpress:
-  build: ./WordPress+php-fpm/
-  networks:
-   - app_default
-  volumes:
-   - "/home/asaadi/data/wp-data:/www/wordpress"
  mariadb:
   build: ./MariaDB/
+  image: mariadb
+  container_name: mariadb
   networks:
    - app_default
   volumes:
    - "/home/asaadi/data/db-data:/var/lib/mysql"
+  env_file:
+   - .env
+ nginx:
+  build: ./nginx/
+  image: nginx
+  container_name: nginx
+  ports:
+   - "443:443"
+  networks:
+   - app_default
+  volumes:
+   - "/home/asaadi/data/wp-data:/www/wordpress"
+ wordpress:
+  build: ./WordPress+php-fpm/
+  image: wordpress
+  container_name: wordpress
+  networks:
+   - app_default
+  volumes:
+   - "/home/asaadi/data/wp-data:/www/wordpress"
 
 networks:
  app_default:

@@ -5,43 +5,50 @@ USER = asaadi
 RM = sudo /usr/bin/rm -rf
 YML = ./srcs/docker-compose.yaml
 
-all: create_start
+all: build create_start
+
+build:
+	@echo " ---->\033[1;34m\tBuilding images... \033[0m"
+	@$(DOCK_COM) -f $(YML) build
+	@echo " \033[1;32m\tdone\033[0m"
+
 
 create_start:
-	@echo "\033[4;37mCreating and starting containers\033[0m... "
-	@$(DOCK_COM) -f $(YML) build
-	@$(DOCK_COM) -f $(YML) up
-	@echo "\033[1;32m\tdone\033[0m"
+	@echo " ---->\033[1;34m\tCreating and starting containers... \033[0m"
+	@$(DOCK_COM) -f $(YML) up -d
+	@echo " \033[1;32m\tdone\033[0m"
 	
 
 stop:
 	$(DOCK_COM) -f $(YML) stop
 
 restart:
-	@echo -n "\033[4;37mRestarting containers\033[0m... "
+	@echo " ---->\033[1;34m\tRestarting containers... \033[0m"
 	@$(DOCK_COM) -f $(YML) restart
-	@echo "\033[1;32m\tdone\033[0m"
+	@echo " \033[1;32m\tdone\033[0m"
 
 display:
-	@echo "\033[4;37mDisplaying containers and images\033[0m "
+	@echo " ---->\033[1;34m\tDisplaying containers and images... \033[0m "
 	@$(DOCK_COM) -f $(YML) ps -a
 	@echo "\n"
 	@$(DOCK_COM) -f $(YML) images
 	@echo "\n"
-	@sudo docker ps -a
+	@sudo docker ps
 	@echo "\n"
-	@sudo docker images -a
+	@sudo docker images
+	@echo " \033[1;32m\tdone\033[0m"
 
 clean:
-	@echo "\033[4;37mStoping and removing containers, networks, images\033[0m... " 
+	@echo " ---->\033[1;34m\tStoping and removing containers, networks, images... \033[0m" 
 	@$(DOCK_COM) -f $(YML) down
 	@$(DOCK_COM) -f $(YML) rm
-	@echo "\033[1;32m\tdone\033[0m"
+	@$(DOCK) system prune -a
+	@echo " \033[1;32m\tdone\033[0m"
 
 fclean: clean
-	@echo "\033[4;37mRemoving host-volumes\033[0m... " 
+	@echo " ---->\033[1;34m\tRemoving host-volumes... \033[0m" 
 	@$(RM) ~/data/wp-data/*
 	@$(RM) ~/data/db-data/*
-	@echo "\033[1;32m\tdone\033[0m"
+	@echo " \033[1;32m\tdone\033[0m"
 
 re: fclean all

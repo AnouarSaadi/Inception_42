@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
  mariadb:
-  build: ./MariaDB/
+  build: ./reqs/mariadb/
   image: mariadb
   container_name: mariadb
   networks:
@@ -12,7 +12,7 @@ services:
   env_file:
    - .env
  nginx:
-  build: ./nginx/
+  build: ./reqs/nginx/
   image: nginx
   container_name: nginx
   ports:
@@ -22,11 +22,13 @@ services:
   volumes:
    - "/home/asaadi/data/wp-data:/www/wordpress"
  wordpress:
-  build: ./WordPress+php-fpm/
+  build: ./reqs/wordpress/
   image: wordpress
   container_name: wordpress
   networks:
    - app_default
+  env_file:
+   - .env
   volumes:
    - "/home/asaadi/data/wp-data:/www/wordpress"
 

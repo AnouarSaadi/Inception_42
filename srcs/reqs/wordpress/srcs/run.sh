@@ -1,5 +1,6 @@
 #!/bin/sh
 #  creating in born run
+if ! ls /www/wordpress/* ; then
 	sed -i 's/127.0.0.1/0.0.0.0/' /etc/php7/php-fpm.d/www.conf
 	mkdir /www 2> /dev/null || true ; mkdir /www/wordpress 2> /dev/null || true
 	mv /wordpress/* /www/wordpress/
@@ -8,5 +9,7 @@
 	sed -i 's/db_user/'$DB_USER'/' /www/wordpress/wp-config.php
 	sed -i 's/db_pass/'$DB_PASSWORD'/' /www/wordpress/wp-config.php
 	sed -i 's/db_host/'$DB_HOST'/' /www/wordpress/wp-config.php
+fi
 #
+
 /usr/sbin/php-fpm7 -FR

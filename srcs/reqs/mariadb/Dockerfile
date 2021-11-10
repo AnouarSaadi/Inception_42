@@ -8,5 +8,3 @@ RUN     apk add mariadb mariadb-client; apk add openrc
 COPY	./srcs/wordpress.sql /
 COPY    ./srcs/run.sh /
 RUN     chmod +x /run.sh
-
-ENTRYPOINT [ "/run.sh" ]

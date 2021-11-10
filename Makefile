@@ -5,7 +5,10 @@ USER = asaadi
 RM = sudo /usr/bin/rm -rf
 YML = ./srcs/docker-compose.yaml
 
-all: build create_start
+all: sethost build create_start
+
+sethost:
+	@sudo sed -i 's|localhost|$(USER).42.fr|' /etc/hosts
 
 build:
 	@echo " ---->\033[1;34m\tBuilding images... \033[0m"
@@ -42,7 +45,7 @@ clean:
 	@echo " ---->\033[1;34m\tStoping and removing containers, networks, images... \033[0m" 
 	@$(DOCK_COM) -f $(YML) down
 	@$(DOCK_COM) -f $(YML) rm
-	@$(DOCK) system prune -a
+	@echo "y" | $(DOCK) system prune -a  
 	@echo " \033[1;32m\tdone\033[0m"
 
 fclean: clean

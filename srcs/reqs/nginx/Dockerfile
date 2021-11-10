@@ -25,13 +25,9 @@ LABEL   Author "asaadi <asaadi@student.1337.ma>"
             openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key \
             -out /etc/ssl/certs/nginx-selfsigned.crt 2> /dev/null || true
     
-
     # Script that will execute in container at runtime.
-	# RUN		mkdir /run/nginx
 	COPY	srcs/run.sh /
 	RUN		chmod +x /run.sh
 
-    # Specifying network ports at runtime
-    EXPOSE  443
-
-    ENTRYPOINT [ "/run.sh" ]
+# Exposing the port
+	EXPOSE  443

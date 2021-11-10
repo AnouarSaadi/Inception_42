@@ -1,6 +1,7 @@
 version: "3.9"
 
 services:
+# MariaDB
  mariadb:
   build: ./reqs/mariadb/
   image: mariadb
@@ -11,6 +12,9 @@ services:
    - "/home/asaadi/data/db-data:/var/lib/mysql"
   env_file:
    - ./.env
+  command: ./run.sh
+  restart: always
+# nginx
  nginx:
   build: ./reqs/nginx/
   image: nginx
@@ -21,6 +25,9 @@ services:
    - app_default
   volumes:
    - "/home/asaadi/data/wp-data:/www/wordpress"
+  command: ./run.sh
+  restart: always
+# WordPress
  wordpress:
   build: ./reqs/wordpress/
   image: wordpress
@@ -31,6 +38,19 @@ services:
    - "/home/asaadi/data/wp-data:/www/wordpress"
   env_file:
    - ./.env
+  command: ./run.sh
+  restart: always
+# redis
+ redis:
+  build: ./reqs/bonus/redis/
+  image: redis
+  container_name: redis
+  networks:
+   - app_default
+  volumes:
+   - "/home/asaadi/data/wp-data:/www/wordpress"
+  command: ./run.sh
+  restart: always
 
 networks:
  app_default:

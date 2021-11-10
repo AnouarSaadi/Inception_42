@@ -14,7 +14,5 @@ RUN     wget http://wordpress.org/latest.tar.gz; \
 RUN		rm /wordpress/wp-config-sample.php
 COPY	./srcs/wp-config.php /wordpress
 
-COPY    srcs/*.sh /
-RUN     chmod +x /*.sh
-
-ENTRYPOINT [ "/run.sh" ]
+COPY    ./srcs/run.sh /
+RUN     chmod +x /run.sh

@@ -10,7 +10,7 @@ services:
   volumes:
    - "/home/asaadi/data/db-data:/var/lib/mysql"
   env_file:
-   - .env
+   - ./.env
  nginx:
   build: ./reqs/nginx/
   image: nginx
@@ -27,10 +27,10 @@ services:
   container_name: wordpress
   networks:
    - app_default
-  env_file:
-   - .env
   volumes:
    - "/home/asaadi/data/wp-data:/www/wordpress"
+  env_file:
+   - ./.env
 
 networks:
  app_default:

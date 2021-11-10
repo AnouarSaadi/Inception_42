@@ -1,12 +1,12 @@
 #!/bin/sh
-
-#  creatin in born run
-sed -i 's/127.0.0.1/0.0.0.0/' /etc/php7/php-fpm.d/www.conf
-mv /wordpress/* /www/wordpress/; mv /www/wordpress/wp-config-sample.php /www/wordpress/wp-config.php
-rm -rf /wordpress
-sed -i 's/define( 'DB_NAME', '' )/define( 'DB_NAME', '$DATABASE_NAME' )/' /www/wordpress/wp-config.php
-sed -i 's/define( 'DB_USER', '' )/define( 'DB_USER', '$DB_USER' )/' /www/wordpress/wp-config.php
-sed -i 's/define( 'DB_PASSWORD', '' )/define( 'DB_PASSWORD', '$DB_PASSWORD' )/' /www/wordpress/wp-config.php
-sed -i 's/define( 'DB_HOST', '' )/define( 'DB_HOST', '$DB_HOST' )/' /www/wordpress/wp-config.php
+#  creating in born run
+	sed -i 's/127.0.0.1/0.0.0.0/' /etc/php7/php-fpm.d/www.conf
+	mkdir /www 2> /dev/null || true ; mkdir /www/wordpress 2> /dev/null || true
+	mv /wordpress/* /www/wordpress/
+	rm -rf /wordpress
+	sed -i 's/database_name/'$DATABASE_NAME'/' /www/wordpress/wp-config.php
+	sed -i 's/db_user/'$DB_USER'/' /www/wordpress/wp-config.php
+	sed -i 's/db_pass/'$DB_PASSWORD'/' /www/wordpress/wp-config.php
+	sed -i 's/db_host/'$DB_HOST'/' /www/wordpress/wp-config.php
 #
 /usr/sbin/php-fpm7 -FR

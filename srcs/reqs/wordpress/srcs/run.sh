@@ -5,10 +5,11 @@ if ! ls /www/wordpress/* ; then
 	mkdir /www 2> /dev/null || true ; mkdir /www/wordpress 2> /dev/null || true
 	mv /wordpress/* /www/wordpress/
 	rm -rf /wordpress
-	sed -i 's/database_name/'$DATABASE_NAME'/' /www/wordpress/wp-config.php
-	sed -i 's/db_user/'$DB_USER'/' /www/wordpress/wp-config.php
-	sed -i 's/db_pass/'$DB_PASSWORD'/' /www/wordpress/wp-config.php
-	sed -i 's/db_host/'$DB_HOST'/' /www/wordpress/wp-config.php
+	sed -i "s/database_name/$DATABASE_NAME/" /www/wordpress/wp-config.php
+	sed -i "s/db_user/$DB_USER/" /www/wordpress/wp-config.php
+	sed -i "s/db_pass/$DB_PASSWORD/" /www/wordpress/wp-config.php
+	sed -i "s/db_host/$DB_HOST/" /www/wordpress/wp-config.php
+	sed -i "s/domaine_name/$DOMAIN_NAME/" /www/wordpress/wp-config.php
 fi
 #
 

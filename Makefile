@@ -42,14 +42,14 @@ display:
 	@echo " \033[1;32m\tdone\033[0m"
 
 clean:
-	@echo " ---->\033[1;34m\tStoping and removing containers, networks, images... \033[0m" 
+	@echo " ---->\033[1;34m\tStoping and removing containers, networks, images... \033[0m"
 	@$(DOCK_COM) -f $(YML) down
 	@$(DOCK_COM) -f $(YML) rm
-	@echo "y" | $(DOCK) system prune -a  
+	@echo "y" | $(DOCK) system prune -a
 	@echo " \033[1;32m\tdone\033[0m"
 
 fclean: clean
-	@echo " ---->\033[1;34m\tRemoving host-volumes... \033[0m" 
+	@echo " ---->\033[1;34m\tRemoving host-volumes... \033[0m"
 	@$(RM) ~/data/wp-data/*
 	@$(RM) ~/data/db-data/*
 	@echo " \033[1;32m\tdone\033[0m"

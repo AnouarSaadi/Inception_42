@@ -10,7 +10,7 @@ if ! ls /www/wordpress/* ; then
 	sed -i "s/db_pass/$DB_PASSWORD/" /www/wordpress/wp-config.php
 	sed -i "s/db_host/$DB_HOST/" /www/wordpress/wp-config.php
 	sed -i "s/domaine_name/$DOMAIN_NAME/" /www/wordpress/wp-config.php
+	rm -rf /www/wordpress/wp-content/plugins/inlucdes/object-cache.php
 fi
 #
-
 /usr/sbin/php-fpm7 -FR

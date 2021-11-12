@@ -47,10 +47,25 @@ services:
   container_name: redis
   networks:
    - app_default
-  volumes:
-   - "/home/asaadi/data/wp-data:/www/wordpress"
   command: ./run.sh
   restart: always
+  ports:
+   - "6379:6379"
+# ftp
+ ftp:
+  build: ./reqs/bonus/ftp/
+  image: ftp
+  container_name: ftp
+  networks:
+   - app_default
+  command: ./run.sh
+  restart: always
+  ports:
+   - "21:21"
+   - "21000:21000"
+  env_file:
+   - ./.env
+# adminer
 
 networks:
  app_default:

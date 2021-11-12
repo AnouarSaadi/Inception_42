@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # telegraf -config /etc/telegraf.conf &
-nginx -g "daemon off;"
+/usr/bin/php -S 0.0.0.0:5050

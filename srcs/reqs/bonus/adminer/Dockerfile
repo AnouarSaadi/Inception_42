@@ -8,16 +8,10 @@ RUN    	apk add php7 php7-fpm php7-common php7-iconv php7-json php7-gd php7-curl
 		php7-mbstring php7-xmlrpc php7-posix php7-mcrypt php7-gettext php7-ldap php7-ctype \
 		php7-dom php7-opcache php7-zlib php7-session php7-intl php7-zip
 
-RUN     wget http://wordpress.org/latest.tar.gz; \
-        tar -xzvf latest.tar.gz ; rm latest.tar.gz;
+RUN		apk add wget; wget https://www.adminer.org/latest-en.php -O /index.php
 
-RUN		rm /wordpress/wp-config-sample.php
-COPY	./srcs/wp-config.php /wordpress
-ADD     ./srcs/redis-cache.tar.gz /wordpress/wp-content/plugins/
-ADD     ./srcs/object-cache.php /wordpress/wp-content/
-
-COPY    ./srcs/run.sh /
-RUN     chmod +x /run.sh
+COPY	./srcs/run.sh /
+RUN		chmod +x /run.sh	
 
 # RUN		echo "http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories &&\
 # 		apk add telegraf

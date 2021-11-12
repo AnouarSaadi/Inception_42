@@ -7,7 +7,7 @@ services:
   image: mariadb
   container_name: mariadb
   networks:
-   - app_default
+   - mynet
   volumes:
    - "/home/asaadi/data/db-data:/var/lib/mysql"
   env_file:
@@ -22,7 +22,7 @@ services:
   ports:
    - "443:443"
   networks:
-   - app_default
+   - mynet
   volumes:
    - "/home/asaadi/data/wp-data:/www/wordpress"
   command: ./run.sh
@@ -33,7 +33,7 @@ services:
   image: wordpress
   container_name: wordpress
   networks:
-   - app_default
+   - mynet
   volumes:
    - "/home/asaadi/data/wp-data:/www/wordpress"
   env_file:
@@ -46,18 +46,16 @@ services:
   image: redis
   container_name: redis
   networks:
-   - app_default
+   - mynet
   command: ./run.sh
   restart: always
-  ports:
-   - "6379:6379"
 # ftp
  ftp:
   build: ./reqs/bonus/ftp/
   image: ftp
   container_name: ftp
   networks:
-   - app_default
+   - mynet
   command: ./run.sh
   restart: always
   ports:
@@ -66,6 +64,30 @@ services:
   env_file:
    - ./.env
 # adminer
+ adminer:
+  build: ./reqs/bonus/adminer/
+  image: adminer
+  container_name: adminer
+  networks:
+   - mynet
+  ports:
+   - "5050:5050"
+  restart: always
+  command: ./run.sh
+# influxdb
+ influxdb:
+  build: ./reqs/bonus/influxdb/
+  image: influxdb
+  container_name: influxdb
+  ports:
+   - "8086:8086"
+  restart: always
+  command: ./run.sh
+  volume:
+   - "/home/asaadi/data/influxdb-data:/var/lib/influxdb"
+  network:
+   - mynet
+# grafana
 
 networks:
- app_default:
+ mynet:

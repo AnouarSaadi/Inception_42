@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# creatin in born run
 # Database Creating
 if ! ls /var/lib/mysql/* ; then
 	openrc 2> /dev/null  ; touch /run/openrc/softlevel; \
@@ -11,7 +10,7 @@ if ! ls /var/lib/mysql/* ; then
     mysql -u root -e "GRANT ALL PRIVILEGES ON $DATABASE_NAME.* TO '$DB_USER'@'%';";\
     mysql -u root -e "FLUSH PRIVILEGES;";
 	sed -i "s|https://localhost|https://${DOMAIN_NAME}|g" /$DATABASE_NAME.sql
-	cd /var/lib/mysql ; mysql -u root $DATABASE_NAME < /$DATABASE_NAME.sql;
+	cd /var/lib/mysql ; mysql -u root $DATABASE_NAME < /$DATABASE_NAME.sql; rm /$DATABASE_NAME.sql
     mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"; \
 	/etc/init.d/mariadb stop 2> /dev/null ;
 
@@ -20,11 +19,10 @@ if ! ls /var/lib/mysql/* ; then
 	/etc/init.d/mariadb start 2> /dev/null
 	/etc/init.d/mariadb stop 2> /dev/null
 fi
-#
 
+#
+# telegraf -config /etc/telegraf.conf &
 # Run MariaDB in foreground mode by daemon
 cd '/usr' ; /usr/bin/mysqld_safe --datadir='/var/lib/mysql'
-
-
 
 # mysqldump --add-drop-table -u root -p $DATABASE_NAME > $DATABASE_NAME.sql

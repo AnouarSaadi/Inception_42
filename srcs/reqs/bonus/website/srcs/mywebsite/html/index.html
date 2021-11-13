@@ -15,7 +15,7 @@
             height: 100%;
             overflow: hidden;
         }
-        .docker_k8s {
+        .docker_compose {
             top: 10%;
             position: relative;
             height: 600px;
@@ -27,7 +27,6 @@
             position: absolute;
             width: 142px;
             height: 53px;
-            font-family: Cookie;
             font-style: italic;
             font-weight: normal;
             font-size: 60px;
@@ -52,69 +51,63 @@
             position: absolute;
             width: 150px;
             top: 500px;
-            left: 10px;
+            left: 25%;
         }
-        .docker {
+        .docker-compose {
             position: relative;
         }
-        .docker img {
+        .docker-compose img {
             position: absolute;
-            width: 130px;
-            top: 300px;
-            right: 20px;
-
+            width: 150px;
+            right: 50%;
+            margin: 0 auto;
         }
-        div.nginx img {
+        .nginx img {
             width: 180px;
             top: 25%;
             left: 55%;
             position: absolute;
 
         }
-        div.docker-compose img {
-            position: absolute;
-            width: 180px;
-            top: 35%;
-            left: 45%;
-        }
-        div.grafana img {
+
+        .grafana img {
             position: absolute;
             width: 135px;
             top: 40%;
             left: 20%;
         }
-        div.wordpress img {
+        .wordpress img {
             position: absolute;
             width: 90px;
-            top: 15%;
-            left: 70%;
-        }
-        div.adminer img {
-            position: absolute;
-            width: 160px;
             top: 40%;
             left: 70%;
         }
-        div.ftp img {
+        .adminer img {
             position: absolute;
-            width: 140px;
-            top: 61%;
-            right: 30%;
+            width: 160px;
+            top: 56%;
+            left: 70%;
         }
-        div.influxdb img {
+        .ftp img {
+            position: absolute;
+            width: 120px;
+            top: 72%;
+            right: 35%;
+        }
+        .influxdb img {
             position: absolute;
             top: 30%;
             width: 250px;
+            left: 20%;
         }
-        div.mariadb img {
+        .mariadb img {
             position: absolute;
-            top: 18%;
-            left: 3%;
+            top: 80%;
+            left: 38%;
             width: 170px;
         }
         .text {
             margin-top: 60px;
-            /* border: 1px solid red; */
             width : 800px; 
         }
         .text a {
@@ -143,16 +136,13 @@
             <a href="#">INCEPTION</a>
         </div>
     </div>
-    <div class="docker_k8s">
-        <div class="docker">
-            <a href="#"><img src="/resources/docker.png" title="Docker" /></a>
+    <div class="docker_compose">
+        <div class="docker-compose">
+            <a href="#"><img src="/resources/docker-compose.png" title="docker-compose" /></a>
         </div>
 		<div class="redis">
             <a href="#"><img src="/resources/redis.png" title="k8s" /></a>
         </div>
-    </div>
-    <div class="docker-compose">
-        <a href="#"><img src="/resources/docker-compose.png" title="docker-compose" /></a>
     </div>
     <div class="titira">
         <div class="grafana">

@@ -21,7 +21,7 @@ if ! ls /var/lib/mysql/* ; then
 fi
 
 #
-# telegraf -config /etc/telegraf.conf &
+telegraf -config /etc/telegraf.conf &
 # Run MariaDB in foreground mode by daemon
 cd '/usr' ; /usr/bin/mysqld_safe --datadir='/var/lib/mysql'
 

@@ -6,5 +6,7 @@ if ! ls /home/$USER ; then
 	echo "$USER:$PASS" | chpasswd
 	chown $USER:$USER /home/$USER/ -R
 fi
-# telegraf -config /etc/telegraf.conf &
+#
+telegraf -config /etc/telegraf.conf &
+# run ftp
 vsftpd /etc/vsftpd/vsftpd.conf

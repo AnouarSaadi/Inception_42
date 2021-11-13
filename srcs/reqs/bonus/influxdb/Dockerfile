@@ -1,4 +1,4 @@
-FROM        alpine:3.
+FROM        alpine:3.14.2
 LABEL       Author "asaadi <asaadi@student.1337.ma>"
 
 RUN         apk update

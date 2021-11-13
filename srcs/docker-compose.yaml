@@ -83,11 +83,32 @@ services:
    - "8086:8086"
   restart: always
   command: ./run.sh
-  volume:
+  volumes:
    - "/home/asaadi/data/influxdb-data:/var/lib/influxdb"
-  network:
+  networks:
    - mynet
 # grafana
+ grafana:
+  build: ./reqs/bonus/grafana/
+  image: grafana
+  container_name: grafana
+  command: ./run.sh
+  restart: always
+  networks:
+   - mynet
+  ports:
+   - "3000:3000"
+# website
+ website:
+  build: ./reqs/bonus/website/
+  image: website
+  container_name: website
+  command: ./run.sh
+  restart: always
+  networks:
+   - mynet
+  ports:
+   - "5000:5000"
 
 networks:
  mynet:

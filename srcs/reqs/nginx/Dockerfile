@@ -33,7 +33,7 @@ LABEL   Author "asaadi <asaadi@student.1337.ma>"
 	EXPOSE  443
 
 # Telegraf
-# RUN		echo "http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories &&\
-# 		apk add telegraf
-# COPY	srcs/telegraf.conf /etc/
+RUN		echo "http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories &&\
+		apk add telegraf
+COPY	srcs/telegraf.conf /etc/
 

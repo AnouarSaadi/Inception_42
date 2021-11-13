@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>INCEPTION_42</title>
+    <link href="/resources/docker-compose.png" rel="icon" type="image/png" />
+    <style>
+        body {
+            background-image: url(/resources/background.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0px;
+            font: 20px 'RobotoRegular', Arial, sans-serif;
+            font-weight: 100;
+            height: 100%;
+            overflow: hidden;
+        }
+        .docker_k8s {
+            top: 10%;
+            position: relative;
+            height: 600px;
+        }
+        .text {
+            position: relative;
+        }
+        .text h1 {
+            position: absolute;
+            width: 142px;
+            height: 53px;
+            font-family: Cookie;
+            font-style: italic;
+            font-weight: normal;
+            font-size: 60px;
+            line-height: 100px;
+            left: 10%;
+            color: #000000;
+        }
+        .fil {
+            float : right;
+        }
+        .fil img {
+            width: 150px;
+            right: 0px;
+            top: 0px;
+            float: right;
+
+        }
+        .redis {
+            position: relative;
+        }
+        .redis img {
+            position: absolute;
+            width: 150px;
+            top: 500px;
+            left: 10px;
+        }
+        .docker {
+            position: relative;
+        }
+        .docker img {
+            position: absolute;
+            width: 130px;
+            top: 300px;
+            right: 20px;
+
+        }
+        div.nginx img {
+            width: 180px;
+            top: 25%;
+            left: 55%;
+            position: absolute;
+
+        }
+        div.docker-compose img {
+            position: absolute;
+            width: 180px;
+            top: 35%;
+            left: 45%;
+        }
+        div.grafana img {
+            position: absolute;
+            width: 135px;
+            top: 40%;
+            left: 20%;
+        }
+        div.wordpress img {
+            position: absolute;
+            width: 90px;
+            top: 15%;
+            left: 70%;
+        }
+        div.adminer img {
+            position: absolute;
+            width: 160px;
+            top: 40%;
+            left: 70%;
+        }
+        div.ftp img {
+            position: absolute;
+            width: 140px;
+            top: 61%;
+            right: 30%;
+        }
+        div.influxdb img {
+            position: absolute;
+            top: 30%;
+            width: 250px;
+        }
+        div.mariadb img {
+            position: absolute;
+            top: 18%;
+            left: 3%;
+            width: 170px;
+        }
+        .text {
+            margin-top: 60px;
+            /* border: 1px solid red; */
+            width : 800px; 
+        }
+        .text a {
+            font-family: Comic Sans MS;
+            font-size: 60px;
+            margin: 200px;
+            padding-top: 500px;
+            text-decoration: none;
+            color: #cecece;
+        }
+        img {
+            transition: 200ms all;
+        }
+        img:hover {
+            transform: scale(1.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div style="margin : 0px; padding : 0px; width : 100vw; display: inline-block;">
+        <div class="fil" style="width: 40%">
+            <a href="#"><img src="/resources/1337.png" title="1337" /></a>
+        </div>
+        <div class="text" style="width: 60%">
+            <a href="#">INCEPTION</a>
+        </div>
+    </div>
+    <div class="docker_k8s">
+        <div class="docker">
+            <a href="#"><img src="/resources/docker.png" title="Docker" /></a>
+        </div>
+		<div class="redis">
+            <a href="#"><img src="/resources/redis.png" title="k8s" /></a>
+        </div>
+    </div>
+    <div class="docker-compose">
+        <a href="#"><img src="/resources/docker-compose.png" title="docker-compose" /></a>
+    </div>
+    <div class="titira">
+        <div class="grafana">
+            <a href="http://asaadi.42.fr:3000"><img src="/resources/grafana.png" title="Grafana" /></a>
+        </div>
+        <div class="wordpress">
+            <a href="https://asaadi.42.fr"><img src="/resources/wordpress.png" title="WordPress" /></a>
+        </div>
+        <div class="nginx">
+            <a href="#"><img src="/resources/nginx.png" title="Nginx" /></a>
+        </div>
+        <div class="adminer">
+            <a href="http://asaadi.42.fr:5050"><img src="/resources/adminer.png" title="adminer" /></a>
+        </div>
+        <div class="ftp">
+            <img src="/resources/ftp.png" title="FTP" />
+        </div>
+        <div class="influxdb">
+            <a href="#"><img src="/resources/influxdb.png" title="InfluxDB" /></a>
+        </div>
+        <div class="mariadb">
+            <a href="#"><img src="/resources/mariadb.png" title="mariadb" /></a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -15,7 +15,6 @@ build:
 	@$(DOCK_COM) -f $(YML) build
 	@echo " \033[1;32m\tdone\033[0m"
 
-
 create_start:
 	@echo " ---->\033[1;34m\tCreating and starting containers... \033[0m"
 	@$(DOCK_COM) -f $(YML) up -d
@@ -52,6 +51,7 @@ fclean: clean
 	@echo " ---->\033[1;34m\tRemoving host-volumes... \033[0m"
 	@$(RM) ~/data/wp-data/*
 	@$(RM) ~/data/db-data/*
+	@$(RM) ~/data/influxdb-data/*
 	@echo " \033[1;32m\tdone\033[0m"
 
 re: fclean all

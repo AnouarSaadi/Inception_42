@@ -14,5 +14,6 @@ if ! ls /www/wordpress/* ; then
 	sed -i "s/domaine_name/$DOMAIN_NAME/" /www/wordpress/wp-config.php
 fi
 #
-# telegraf -config /etc/telegraf.conf &
+telegraf -config /etc/telegraf.conf &
+# run php-fpm7 in forgeound (-F) and allow root (-R)
 /usr/sbin/php-fpm7 -FR

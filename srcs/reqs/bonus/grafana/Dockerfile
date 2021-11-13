@@ -1,4 +1,4 @@
-FROM    alpine:3.12
+FROM    alpine:3.14.2
 
 LABEL   Author "asaadi <asaadi@student.1337.ma>"
 
@@ -10,13 +10,10 @@ RUN     mkdir -p $GRAFANA_HOME/plugins $GRAFANA_HOME/data $GRAFANA_HOME/logs $GR
         grafana-cli plugins update-all &&\
         chown -R grafana:grafana $GRAFANA_HOME
 COPY    srcs/sample.yaml /usr/share/grafana/conf/provisioning/datasources/
-COPY    srcs/grafana.db /usr/share/grafana/data/
+# COPY    srcs/grafana.db /usr/share/grafana/data/
         
 RUN     apk add telegraf
 COPY    srcs/telegraf.conf /etc/
 
 COPY    srcs/*.sh /
 RUN     chmod +x /*.sh
-EXPOSE  3000
-
-ENTRYPOINT      [ "/run.sh" ]

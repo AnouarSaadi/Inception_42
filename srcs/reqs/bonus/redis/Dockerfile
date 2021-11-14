@@ -5,9 +5,11 @@ LABEL   Author "asaadi <asaadi@student.1337.ma>"
 
 RUN     apk add --update redis
 
-ADD    ./srcs/run.sh /
+ADD    ./tools/run.sh /
 RUN     chmod +x /run.sh
 
 RUN		echo "http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories &&\
 		apk add telegraf
-COPY	srcs/telegraf.conf /etc/
+COPY	./conf/telegraf.conf /etc/
+
+ENTRYPOINT ["/bin/sh", "run.sh"]

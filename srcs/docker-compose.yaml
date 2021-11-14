@@ -9,10 +9,9 @@ services:
   networks:
    - mynet
   volumes:
-   - "/home/asaadi/data/db-data:/var/lib/mysql"
+   - database_volume:/var/lib/mysql
   env_file:
    - ./.env
-  command: ./run.sh
   restart: always
 # nginx
  nginx:
@@ -24,8 +23,7 @@ services:
   networks:
    - mynet
   volumes:
-   - "/home/asaadi/data/wp-data:/www/wordpress"
-  command: ./run.sh
+   - wordpress_volume:/www/wordpress
   restart: always
 # WordPress
  wordpress:
@@ -35,10 +33,9 @@ services:
   networks:
    - mynet
   volumes:
-   - "/home/asaadi/data/wp-data:/www/wordpress"
+   - wordpress_volume:/www/wordpress
   env_file:
    - ./.env
-  command: ./run.sh
   restart: always
 # redis
  redis:
@@ -47,7 +44,6 @@ services:
   container_name: redis
   networks:
    - mynet
-  command: ./run.sh
   restart: always
 # ftp
  ftp:
@@ -56,7 +52,6 @@ services:
   container_name: ftp
   networks:
    - mynet
-  command: ./run.sh
   restart: always
   ports:
    - "21:21"
@@ -73,7 +68,6 @@ services:
   ports:
    - "5050:5050"
   restart: always
-  command: ./run.sh
 # influxdb
  influxdb:
   build: ./reqs/bonus/influxdb/
@@ -82,9 +76,8 @@ services:
   ports:
    - "8086:8086"
   restart: always
-  command: ./run.sh
   volumes:
-   - "/home/asaadi/data/influxdb-data:/var/lib/influxdb"
+   - influxdb_volume:/var/lib/influxdb
   networks:
    - mynet
 # grafana
@@ -92,7 +85,6 @@ services:
   build: ./reqs/bonus/grafana/
   image: grafana
   container_name: grafana
-  command: ./run.sh
   restart: always
   networks:
    - mynet
@@ -103,12 +95,31 @@ services:
   build: ./reqs/bonus/website/
   image: website
   container_name: website
-  command: ./run.sh
   restart: always
   networks:
    - mynet
   ports:
    - "5000:5000"
+
+volumes:
+ database_volume:
+  driver: local
+  driver_opts:
+   o: bind
+   type: none
+   device: /home/asaadi/data/db-data
+ wordpress_volume:
+  driver: local
+  driver_opts:
+   o: bind
+   type: none
+   device: /home/asaadi/data/wp-data
+ influxdb_volume:
+  driver: local
+  driver_opts:
+   o: bind
+   type: none
+   device: /home/asaadi/data/influxdb-data
 
 networks:
  mynet:

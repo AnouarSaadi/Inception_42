@@ -10,3 +10,5 @@ COPY        srcs/telegraf.conf /etc/
 
 COPY        srcs/run.sh /
 RUN         chmod +x /run.sh
+
+ENTRYPOINT ["/bin/sh", "run.sh"]

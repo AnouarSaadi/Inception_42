@@ -10,9 +10,11 @@ RUN    	apk add php7 php7-fpm php7-common php7-iconv php7-json php7-gd php7-curl
 
 RUN		apk add wget; wget https://www.adminer.org/latest-en.php -O /index.php
 
-COPY	./srcs/run.sh /
-RUN		chmod +x /run.sh	
+COPY	./tools/run.sh /
+RUN		chmod +x /run.sh
 
 RUN		echo "http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories &&\
 		apk add telegraf
-COPY	srcs/telegraf.conf /etc/
+COPY	./conf/telegraf.conf /etc/
+
+ENTRYPOINT ["/bin/sh", "run.sh"]

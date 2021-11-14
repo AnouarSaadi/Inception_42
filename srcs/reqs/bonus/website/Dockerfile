@@ -3,8 +3,8 @@ LABEL	Author "asaadi <asaadi@student.1337.ma>"
 
 RUN		apk update
 
-ADD		./srcs/mywebsite/html/index.html /index.html
-ADD		./srcs/mywebsite/resources /resources
+ADD		./tools/mywebsite/html/index.html /index.html
+ADD		./tools/mywebsite/resources /resources
 
 RUN    	apk add php7 php7-fpm php7-common php7-iconv php7-json php7-gd php7-curl \ 
 		php7-xml php7-mysqli php7-imap php7-cgi fcgi php7-pdo php7-pdo_mysql php7-soap \
@@ -13,7 +13,9 @@ RUN    	apk add php7 php7-fpm php7-common php7-iconv php7-json php7-gd php7-curl
 
 RUN		echo "http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories &&\
 		apk add telegraf
-COPY	srcs/telegraf.conf /etc/
+COPY	./conf/telegraf.conf /etc/
 
-COPY	./srcs/run.sh /
+COPY	./tools/run.sh /
 RUN		chmod +x /run.sh
+
+ENTRYPOINT ["/bin/sh", "run.sh"]

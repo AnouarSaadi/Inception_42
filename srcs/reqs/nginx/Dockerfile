@@ -16,7 +16,7 @@ LABEL   Author "asaadi <asaadi@student.1337.ma>"
 
 #  Configuration
     RUN     rm /etc/nginx/nginx.conf
-    COPY    srcs/nginx.conf /etc/nginx/
+    COPY    ./conf/nginx.conf /etc/nginx/
 
 # Configuration ssl
     RUN     apk add openssl
@@ -26,7 +26,7 @@ LABEL   Author "asaadi <asaadi@student.1337.ma>"
             -out /etc/ssl/certs/nginx-selfsigned.crt 2> /dev/null || true
     
     # Script that will execute in container at runtime.
-	COPY	srcs/run.sh /
+	COPY	./tools/run.sh /
 	RUN		chmod +x /run.sh
 
 # Exposing the port
@@ -35,5 +35,6 @@ LABEL   Author "asaadi <asaadi@student.1337.ma>"
 # Telegraf
 RUN		echo "http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories &&\
 		apk add telegraf
-COPY	srcs/telegraf.conf /etc/
+COPY	./conf/telegraf.conf /etc/
 
+ENTRYPOINT ["/bin/sh", "run.sh"]

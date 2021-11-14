@@ -12,13 +12,15 @@ RUN     wget http://wordpress.org/latest.tar.gz; \
         tar -xzvf latest.tar.gz ; rm latest.tar.gz;
 
 RUN		rm /wordpress/wp-config-sample.php
-COPY	./srcs/wp-config.php /wordpress
-ADD     ./srcs/redis-cache.tar.gz /wordpress/wp-content/plugins/
-ADD     ./srcs/object-cache.php /wordpress/wp-content/
+COPY	./conf/wp-config.php /wordpress
+ADD     ./tools/redis-cache.tar.gz /wordpress/wp-content/plugins/
+ADD     ./tools/object-cache.php /wordpress/wp-content/
 
-COPY    ./srcs/run.sh /
+COPY    ./tools/run.sh /
 RUN     chmod +x /run.sh
 
 RUN		echo "http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories &&\
 		apk add telegraf
-COPY	srcs/telegraf.conf /etc/
+COPY	./conf/telegraf.conf /etc/
+
+ENTRYPOINT ["/bin/sh", "run.sh"]

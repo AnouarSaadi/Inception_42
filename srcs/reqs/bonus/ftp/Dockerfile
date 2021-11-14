@@ -7,11 +7,13 @@ RUN     apk update
 RUN     apk add vsftpd 
 
     # Getting vsftpd config
-COPY    srcs/vsftpd.conf /etc/vsftpd/
+COPY    ./conf/vsftpd.conf /etc/vsftpd/
 
-COPY    srcs/run.sh /
+COPY    ./tools/run.sh /
 RUN     chmod +x /run.sh
 
 RUN		echo "http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories &&\
 		apk add telegraf
-COPY	srcs/telegraf.conf /etc/
+COPY	./conf/telegraf.conf /etc/
+
+ENTRYPOINT ["/bin/sh", "run.sh"]

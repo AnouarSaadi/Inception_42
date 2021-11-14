@@ -1,6 +1,6 @@
 # Inception
 
-> This project aims to broaden the knowledge about system administration by using Docker. virtualization of several Docker images, creating them in a virtual machine.
+> The project aims to broaden the knowledge about system administration by using Docker. virtualization of several Docker images, creating them in a virtual machine.
 > This project is about setting up a small infrastructure composed of different services under specific rules. The project has been done  in a virtual machine by using "docker-compose".
 
 
